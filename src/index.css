@@ -1,0 +1,18 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sakha-bg: #0A0E1A;
+  --sakha-surface: #111827;
+  --sakha-border: #1F2937;
+  --sakha-text: #F9FAFB;
+  --sakha-muted: #9CA3AF;
+  --sakha-accent: #6366F1;
+  font-family: 'Inter', system-ui, sans-serif;
+  color-scheme: dark;
+}
+body { background: var(--sakha-bg); color: var(--sakha-text); min-height: 100vh; }
+button { font-family: inherit; cursor: pointer; }
+input, select { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--sakha-bg); }
+::-webkit-scrollbar-thumb { background: var(--sakha-border); border-radius: 3px; }
