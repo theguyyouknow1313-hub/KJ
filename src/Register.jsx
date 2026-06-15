@@ -48,7 +48,7 @@ export default function Register() {
       if (isLogin) {
         // Login: find by email
         const { data, error: err } = await supabase
-          .from('users').select('*').eq('email', form.email.toLowerCase().trim()).single()
+          .from('sakha_users').select('*').eq('email', form.email.toLowerCase().trim()).single()
         if (err || !data) {
           setError('No account found with this email. Please register.')
           setLoading(false)
