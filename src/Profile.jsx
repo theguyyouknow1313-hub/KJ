@@ -42,7 +42,7 @@ export default function Profile() {
   async function savePreferences() {
     setSaving(true)
     try {
-      await supabase.from('users').update({ self_declared_type:declaredType, preferred_language:prefLang }).eq('id', user.id)
+      await supabase.from('sakha_users').update({ self_declared_type:declaredType, preferred_language:prefLang }).eq('id', user.id)
     } catch(e) {}
     setSaving(false)
   }

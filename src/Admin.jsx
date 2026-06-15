@@ -26,7 +26,7 @@ export default function Admin() {
 
   async function loadStats() {
     const [{ count:users }, { count:assessments }, { data:paid }] = await Promise.all([
-      supabase.from('users').select('*', { count:'exact', head:true }),
+      supabase.from('sakha_users').select('*', { count:'exact', head:true }),
       supabase.from('assessments').select('*', { count:'exact', head:true }),
       supabase.from('assessments').select('payment_amount').eq('paid', true),
     ])
@@ -36,7 +36,7 @@ export default function Admin() {
 
   async function loadUsers() {
     setLoadingUsers(true)
-    const { data } = await supabase.from('users').select('*').order('created_at', { ascending:false }).limit(50)
+    const { data } = await supabase.from('sakha_users').select('*').order('created_at', { ascending:false }).limit(50)
     if (data) setUsers(data)
     setLoadingUsers(false)
   }
@@ -49,7 +49,7 @@ export default function Admin() {
   }
 
   async function togglePremium(userId, current) {
-    await supabase.from('users').update({ is_premium: !current }).eq('id', userId)
+    await supabase.from('sakha_users').update({ is_premium: !current }).eq('id', userId)
     loadUsers()
   }
 

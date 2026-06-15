@@ -59,14 +59,14 @@ export default function Register() {
       } else {
         // Register
         const { data: existing } = await supabase
-          .from('users').select('id').eq('email', form.email.toLowerCase().trim()).single()
+          .from('sakha_users').select('id').eq('email', form.email.toLowerCase().trim()).single()
         if (existing) {
           setError('An account with this email already exists. Please log in instead.')
           setLoading(false)
           setIsLogin(true)
           return
         }
-        const { data, error: err } = await supabase.from('users').insert({
+        const { data, error: err } = await supabase.from('sakha_users').insert({
           name: form.name.trim(),
           email: form.email.toLowerCase().trim(),
           phone: form.phone.trim() || null,
