@@ -20,15 +20,15 @@ export default function Admin() {
   }, [authed])
 
   async function loadConfig() {
-    const { data } = await supabase.from('admin_config').select('*').eq('id','singleton').single()
+    const { data } = await supabase.from('sakha_config').select('*').eq('id','singleton').single()
     if (data) setConfig(data)
   }
 
   async function loadStats() {
     const [{ count:users }, { count:assessments }, { data:paid }] = await Promise.all([
       supabase.from('sakha_users').select('*', { count:'exact', head:true }),
-      supabase.from('assessments').select('*', { count:'exact', head:true }),
-      supabase.from('assessments').select('payment_amount').eq('paid', true),
+      supabase.from('sakha_submissions').select('*', { count:'exact', head:true }),
+      supabase.from('sakha_submissions').select('payment_amount').eq('paid', true),
     ])
     const revenue = (paid || []).reduce((sum, a) => sum + (a.payment_amount || 0), 0)
     setStats({ users: users||0, assessments: assessments||0, paid: (paid||[]).length, revenue })

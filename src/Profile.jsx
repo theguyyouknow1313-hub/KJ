@@ -20,7 +20,7 @@ export default function Profile() {
 
   async function loadHistory() {
     try {
-      const { data } = await supabase.from('assessments')
+      const { data } = await supabase.from('sakha_submissions')
         .select('*').eq('user_id', user.id).order('created_at', { ascending:false }).limit(10)
       if (data) {
         setHistory(data)
